@@ -104,7 +104,7 @@ console.log(yearsUntilRetirement(1991, 'Jonas'));
 console.log(yearsUntilRetirement(1950, 'Mike'));
 
 
-// code exercise 5 (my code)
+///////////////////// code exercise 5 (my code)///////////////////////////////////////////////////////////
 const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 
 const scoreDolphins = calcAverage(44, 23, 71);
