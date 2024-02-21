@@ -123,3 +123,39 @@ function checkWinner(avgDolphins, avgKoalas) {
 
 checkWinner(scoreDolphins, scoreKoalas);
 */
+
+const friend1 = 'Michael';
+const friend2 = 'Steven';
+const friend3 = 'Peter';
+
+const friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends);
+
+const years1 = new Array(1991, 1984, 2008, 2020)
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length);
+console.log(friends[friends.length - 1]);
+
+friends[2] = 'Jay';
+console.log(friends);
+
+const firstName = 'Jonas';
+const jonas = [firstName, 'Schmedtmann', 2037 - 1991, 'teacher', friends];
+console.log(jonas)
+
+// Exercise
+const calcAge2 = function (birthYear) {
+    return 2037 - birthYear;
+}
+const years = [1990, 1967, 2002, 2010, 2018];
+
+const age1 = calcAge2(years[0]);
+const age2 = calcAge2(years[1]);
+const age3 = calcAge2(years[years.length - 1]);
+console.log(age1, age2, age3)
+
+const ages = [calcAge2(years[0]), calcAge2(years[1]), calcAge2(years[2])];
+console.log(ages);
