@@ -282,7 +282,7 @@ console.log(jonas.age);
 
 // challenge
 console.log(jonas.getSummary());
-*/
+
 
 const mark = {
     fullName: 'Mark Miller',
@@ -312,3 +312,9 @@ if (mark.bmi > john.bmi) {
 } else if (john.bmi > mark.bmi) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`)
 }
+*/
+
+//for loop keeps running while condition is true
+for(let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep} `)
+};
