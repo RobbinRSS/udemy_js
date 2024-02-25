@@ -312,9 +312,54 @@ if (mark.bmi > john.bmi) {
 } else if (john.bmi > mark.bmi) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`)
 }
-*/
 
 //for loop keeps running while condition is true
 for(let rep = 1; rep <= 10; rep++) {
     console.log(`Lifting weights repetition ${rep} `)
+};
+*/
+
+const jonas = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+const types = [];
+
+
+for(let i = 0; i < jonas.length ; i++) {
+    //reading from jonas array
+    console.log(jonas[i], typeof jonas[i])
+
+    //filling types array
+    // types[i] = typeof jonas[i]
+    types.push(typeof jonas[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for(let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+console.log('--- only strings ---')
+for(let i = 0; i < jonas.length ; i++) {
+    // only logs strings
+    if(typeof jonas[i] !== 'string') continue;
+    console.log(jonas[i], typeof jonas[i])
+};
+
+console.log('--- break with number ---')
+for(let i = 0; i < jonas.length ; i++) {
+    // stops the code when a number is found
+    if(typeof jonas[i] === 'number') break;
+    console.log(jonas[i], typeof jonas[i])
 };
