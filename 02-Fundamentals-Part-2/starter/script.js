@@ -405,13 +405,13 @@ while (dice !== 6) {
     dice = Math.trunc(Math.random() * 6) + 1;
     if (dice === 6) console.log('Loop is about to end...');
 }
-*/
+
 
 const calcTip = function (bill) {
     return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 }
   
-/* Write your code below. Good luck! 🙂 */
+/* Write your code below. Good luck! 🙂 
   
 const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 const tips = [];
@@ -436,3 +436,4 @@ const calcAverage = function(arr) {
 console.log(calcAverage([2, 3, 7]));
 console.log(calcAverage(totals));
 console.log(calcAverage(tips));
+*/
