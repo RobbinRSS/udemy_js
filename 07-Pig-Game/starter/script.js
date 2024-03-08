@@ -17,7 +17,7 @@ let scores, currentScore, activePlayer, playing;
 
 // Starting conditions
 const init = function () {
-  // reset numbers
+  // setting numbers and playing to true
   scores = [0, 0];
   currentScore = 0;
   activePlayer = 0;
@@ -28,7 +28,7 @@ const init = function () {
   current0El.textContent = 0;
   current1El.textContent = 0;
 
-  // reset classes
+  // starting classes
   diceEl.classList.add('hidden');
   player0EL.classList.remove('player--winner');
   player1EL.classList.remove('player--winner');
