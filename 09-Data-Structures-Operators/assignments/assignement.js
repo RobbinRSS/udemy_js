@@ -303,3 +303,16 @@ const printBookAuthorsCount = function (title, ...authors) {
 };
 
 printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne");
+
+/////////////// Short circuiting (&& and ||) ////////////////
+
+// 5.1
+const hasExamplesInJava = function (book) {
+  return book.programmingLanguage === "java" || "no data available";
+};
+hasExamplesInJava(books[0]);
+
+// 5.2
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent && console.log(`${books[i].title} has online content`);
+}
