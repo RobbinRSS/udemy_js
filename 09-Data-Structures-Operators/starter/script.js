@@ -86,6 +86,8 @@ console.log(rest1);
 console.log(rest2);
 // -------------------------------------------- //
 
+///////////////////////////////////////////////////
+
 /*
 /////////// The Nullish Coalescing operator(??) ///////////
 restaurant.numGuests = 0;
