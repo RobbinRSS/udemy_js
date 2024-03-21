@@ -52,6 +52,7 @@ const restaurant = {
   },
 };
 
+/*
 ///////// logical assignement operators //////////////
 const rest1 = {
   name: 'Capri',
@@ -88,7 +89,6 @@ console.log(rest2);
 
 ///////////////////////////////////////////////////
 
-/*
 /////////// The Nullish Coalescing operator(??) ///////////
 restaurant.numGuests = 0;
 const guests2 = restaurant.numGuests || 10;
