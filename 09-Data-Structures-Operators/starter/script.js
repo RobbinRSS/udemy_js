@@ -60,7 +60,7 @@ console.log(guests2);
 // Nullish: null and undefined (NOT 0 or '') if restaurant.numGuests = undefined or null the evalution continues to 10
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////
 
 /*
 /////////////// Short circuiting (&& and ||) /////////////////
