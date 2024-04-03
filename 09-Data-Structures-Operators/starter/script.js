@@ -52,6 +52,86 @@ const restaurant = {
   },
 };
 
+//////////////// Coding challenge #1 ////////////////
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+// 2
+const [gk, ...fieldPlayers] = game.players[0];
+console.log(gk, fieldPlayers);
+
+// 3
+const allplayers = [...game.players[0], ...game.players[1]];
+console.log(allplayers);
+
+// 4
+const players1final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1final);
+
+// 5
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+
+// 6
+const printgoals = function (...players) {
+  console.log(players);
+  console.log(`${players.length} goals were scored`);
+};
+
+printgoals('Davies', 'Muller', 'Lewandoski', 'Kimmich');
+printgoals('Davies', 'Muller');
+printgoals(...game.scored);
+
+// 7
+team1 < team2 && console.log(`Team 1 has more change to win`);
+team1 > team2 && console.log(`Team 2 has more change to win`);
+////////////////////////////////////////////////
+
 /*
 ///////// logical assignement operators //////////////
 const rest1 = {

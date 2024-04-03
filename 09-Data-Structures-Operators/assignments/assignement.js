@@ -272,7 +272,6 @@ printBookInfo({
   author: "Robert Sedgewick",
   year: "2011",
 });
-printBookInfo({ title: "Algorithms", author: "Robert Sedgewick" });
 
 printBookInfo = function ({ title, author, year = "year unknown" }) {
   console.log(`${title} by ${author}, ${year}`);
