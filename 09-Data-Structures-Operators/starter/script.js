@@ -51,6 +51,32 @@ const restaurant = {
   },
 };
 
+//////////////// optional chaining ////////////////
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+// with optional chaining
+console.log(restaurant.openingHours.mon?.open); // returns undefined
+// console.log(restaurant.openingHours.mon.open); // error
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  // in python == for day in days: print(day)
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed'; // if openingHours[day] exists (defined) then it looks if its open
+  console.log(`on ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// arrays
+const user = [{ name: 'jonas', email: 'jonas@email.com' }];
+
+console.log(user[0]?.name ?? 'User array empty');
+console.log(user[1]?.name ?? 'User array empty');
 /*
 
 //////// looping arrays: the for-of loop //////////////
