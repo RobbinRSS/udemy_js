@@ -387,3 +387,35 @@ const newBook2 = {
   author: ["Brian W. Kernighan", "Dennis M. Ritchie"],
   pages,
 };
+
+// optional chaining
+
+// 10.1
+const getFirstKeyword = function (book) {
+  return book.keywords?.[0];
+};
+
+getFirstKeyword(books[0]);
+
+// looping objects: object keys values and entries
+
+// 11.1
+const entries = [];
+
+for (const key of Object.keys(books[0].thirdParty.goodreads)) {
+  entries.push([key]);
+}
+
+// 11.2
+for (const [index, value] of Object.values(
+  books[0].thirdParty.goodreads
+).entries()) {
+  entries[index].push(value);
+}
+
+// 11.3
+const entries2 = Object.entries(books[0].thirdParty.goodreads);
+
+// 11.4
+console.log(entries);
+console.log(entries2);
