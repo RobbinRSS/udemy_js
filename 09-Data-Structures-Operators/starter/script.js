@@ -51,6 +51,64 @@ const restaurant = {
   },
 };
 
+///////////////////////// sets ////////////////////////////
+
+// set haalt dubbele dingen weg
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza')); // kijkt of er in orderSet 'Pizza' is. zo ja dan geeft het true anders false
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// example
+const staff = new Set([
+  'Waiter',
+  'Chef',
+  'Waiter',
+  'Manager',
+  'Chef',
+  'Waiter',
+]);
+
+// own solution // = new Set around const staff was part of my solution
+const uniqueStaff = [];
+
+for (const staffs of staff) uniqueStaff.push(staffs);
+console.log(uniqueStaff);
+// ----------------
+
+// jonas solution
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+// ----------------
+
+// to see how many different kinds of employees there are
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+// to look how many different letters there are in the word
+console.log(new Set('jonasschmedtmann').size);
+
+/*
+
 /////////////////// Coding challenge #2 //////////////////
 
 const game = {
@@ -119,8 +177,6 @@ for (const [key, value] of Object.entries(game.odds)) {
     console.log(`Odd of victory ${game[key]}: ${value}`);
   }
 }
-
-/*
 
 ////// looping objects: objects keys / values / entries //////
 
