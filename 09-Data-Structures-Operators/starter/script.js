@@ -51,6 +51,8 @@ const restaurant = {
   },
 };
 
+/*
+
 ///////////////////////// sets ////////////////////////////
 
 // set haalt dubbele dingen weg
@@ -106,8 +108,6 @@ console.log(
 
 // to look how many different letters there are in the word
 console.log(new Set('jonasschmedtmann').size);
-
-/*
 
 /////////////////// Coding challenge #2 //////////////////
 
