@@ -51,6 +51,44 @@ const restaurant = {
   },
 };
 
+/////////// summary which data structure to use ///////////
+// data structures
+// is it a simple list? yes = then use array or sets
+
+// if we need key/value pairs then use object or maps
+
+// --------------------------------------------------- //
+// arrays vs sets
+
+//arrays :
+// use when you need ordered (in order) list of values (might contain duplicates)
+// use when you need to manipulate data
+
+//sets:
+//use when you need to work with unique values
+// use when high-performance is really important, searching or deleting an item is 10x faster then arrays
+// use to remove duplicates
+// -------------------------------------------------- //
+
+// -------------------------------------------------- //
+// object vs maps
+
+// objects:
+// more "traditional" key/value store ("abused" objects)
+// Easier to write and access values with . and []
+// use when you need to include functions(methods)
+// use when working with JSON
+
+// maps:
+// better performance
+// keys can have any data type
+// easy to iterate
+// easy to compute size
+// Use when you simply need to map key values
+// use when you need keys that are NOT strings
+
+// -------------------------------------------------- //
+
 /*
 
 ///////////// maps iteration /////////////////
