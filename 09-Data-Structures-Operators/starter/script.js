@@ -51,6 +51,8 @@ const restaurant = {
   },
 };
 
+/*
+
 ///////////// maps iteration /////////////////
 
 const question = new Map([
@@ -80,7 +82,6 @@ console.log(question.get(question.get('correct') === answer));
 // convert map to array
 console.log([...question]);
 
-/*
 
 ////////////////// maps: fundementals //////////////////
 const rest = new Map();
