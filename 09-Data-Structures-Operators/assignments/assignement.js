@@ -495,5 +495,10 @@ console.log(quote.slice(quote.lastIndexOf(" ") + 1));
 const isContributor = function (author) {
   return author.lastIndexOf("(Contributor)") !== -1;
 };
-
+// contributor is -1 if present in the string (!==)returns true
 isContributor("Julie Sussman (Contributor)");
+
+// working with string part 2
+
+// 16.1
+normalizeAuthorName("  JuliE sussMan (Contributor)");
