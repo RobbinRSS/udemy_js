@@ -507,9 +507,10 @@ function normalizeAuthorName(author) {
 
   let lastName = "";
   if (author.indexOf(" ") === author.lastIndexOf(" ")) {
-    lastName = author.slice(author.indexOf(" ") + 1, author.length);
+    // checks if there is only 1 space if the first space and last space are the same this code will be used (so no (Contributor))
+    lastName = author.slice(author.indexOf(" ") + 1, author.length); // sliced alles weg tot aan het einde van de author.length
   } else {
-    lastName = author.slice(author.indexOf(" ") + 1, author.lastIndexOf(" "));
+    lastName = author.slice(author.indexOf(" ") + 1, author.lastIndexOf(" ")); // hij gaat het woord tussen de 1e spatie en de laatste spatie weghalen (lastName) / + 1 zorgt er gewoon voor dat de positie van de achternaam op de goeie plek gaat staan nadat de spatie weg is
   }
 
   const capitalizedFirstName =
