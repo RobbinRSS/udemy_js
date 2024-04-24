@@ -51,6 +51,52 @@ const restaurant = {
   },
 };
 
+////////////////// coding challenge 3 /////////////////////
+const gameEvents = new Map([
+  [17, '⚽Goal'],
+  [36, '🔁Substitution'],
+  [47, '⚽Goal'],
+  [61, '🔁Substitution'],
+  [64, '🟨Yellow card'],
+  [69, '🟥Red card'],
+  [70, '🔁Substitution'],
+  [72, '🔁Substitution'],
+  [76, '⚽Goal'],
+  [80, '⚽Goal'],
+  [92, '🟨Yellow card'],
+]);
+
+// 1)
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2)
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3)
+const time = [...gameEvents.keys()].pop();
+console.log(time); // gives the last number of the array
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
+// inplaats van const time kon ik ook 90 gebruiken, maar dit was een extraatje
+
+// 4)
+for (const [key, value] of gameEvents) {
+  if (key <= 45) {
+    console.log(`[FIRST HALF] ${key}: ${value}`);
+  } else {
+    console.log(`[SECOND HALF] ${key}: ${value}`);
+  }
+}
+
+// how Jonas did assignement 4
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
+}
+
 /////////// summary which data structure to use ///////////
 // data structures
 // is it a simple list? yes = then use array or sets
