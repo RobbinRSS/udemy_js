@@ -51,6 +51,48 @@ const restaurant = {
   },
 };
 
+//////////////// working with strings 1 ///////////////////
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]); // console A
+console.log(plane[1]); // console 3
+console.log(plane[2]); // console 2
+console.log('B737'[0]); // console B
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r')); // console 6, looks where the letter is in the word
+console.log(airline.lastIndexOf('r')); // looks where the last r is located
+console.log(airline.indexOf('Portugal')); // console 8 it starts at character 8
+
+console.log(airline.slice(4)); // console Air Portugal, 4 is the location where the extraction will start
+console.log(airline.slice(4, 7)); // console Air
+
+console.log(airline.slice(0, airline.indexOf(' '))); // console TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // console Portugal
+
+console.log(airline.slice(-2)); // console al, last two numbers remain
+console.log(airline.slice(1, -1)); // AP AIR Portuga, removes the first and last letter
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log(`${seat} is a middle seat`);
+  else console.log('You got lucky');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('Jonas'));
+console.log(typeof new String('Jonas')); // console Object
+console.log(typeof new String('Jonas').slice(1)); // console String
+/*
+
 ////////////////// coding challenge 3 /////////////////////
 const gameEvents = new Map([
   [17, '⚽Goal'],
@@ -135,7 +177,6 @@ for (const [min, event] of gameEvents) {
 
 // -------------------------------------------------- //
 
-/*
 
 ///////////// maps iteration /////////////////
 

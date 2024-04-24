@@ -474,3 +474,26 @@ const firstBookMap = new Map(Object.entries([books[0]]));
 for (const [key, value] of firstBookMap) {
   if (typeof value === "number") console.log(key);
 }
+
+// working with strings part 1
+
+// 15.1
+console.log(
+  books[0].ISBN["6"],
+  books[0].ISBN["4"],
+  books[0].ISBN["9"],
+  books[0].ISBN["8"]
+);
+
+// 15.2 and 15.3
+const quote =
+  "A computer once beat me at chess, but it was no match for me at kick boxing";
+console.log(quote.indexOf("chess"));
+console.log(quote.slice(quote.lastIndexOf(" ") + 1));
+
+// 15.4
+const isContributor = function (author) {
+  return author.lastIndexOf("(Contributor)") !== -1;
+};
+
+isContributor("Julie Sussman (Contributor)");
