@@ -307,13 +307,13 @@ printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne");
 
 // 5.1
 const hasExamplesInJava = function (book) {
-  return book.programmingLanguage === "java" || "no data available";
+  return book.programmingLanguage === "java" || "no data available"; // returns true // || is used for true
 };
 hasExamplesInJava(books[0]);
 
 // 5.2
 for (let i = 0; i < books.length; i++) {
-  books[i].onlineContent && console.log(`${books[i].title} has online content`);
+  books[i].onlineContent && console.log(`${books[i].title} has online content`); // && is used for false
 }
 
 /////////// The Nullish Coalescing operator(??) ///////////
@@ -501,27 +501,27 @@ isContributor("Julie Sussman (Contributor)");
 // working with string part 2
 
 // 16.1
-function normalizeAuthorName(author) {
-  author = author.trim();
-  const firstName = author.slice(0, author.indexOf(" "));
+// function normalizeAuthorName(author) {
+//   author = author.trim();
+//   const firstName = author.slice(0, author.indexOf(" "));
 
-  let lastName = "";
-  if (author.indexOf(" ") === author.lastIndexOf(" ")) {
-    // checks if there is only 1 space if the first space and last space are the same this code will be used (so no (Contributor))
-    lastName = author.slice(author.indexOf(" ") + 1, author.length); // sliced alles weg tot aan het einde van de author.length
-  } else {
-    lastName = author.slice(author.indexOf(" ") + 1, author.lastIndexOf(" ")); // hij gaat het woord tussen de 1e spatie en de laatste spatie weghalen (lastName) / + 1 zorgt er gewoon voor dat de positie van de achternaam op de goeie plek gaat staan nadat de spatie weg is
-  }
+//   let lastName = "";
+//   if (author.indexOf(" ") === author.lastIndexOf(" ")) {
+//     // checks if there is only 1 space if the first space and last space are the same this code will be used (so no (Contributor))
+//     lastName = author.slice(author.indexOf(" ") + 1, author.length); // sliced alles weg tot aan het einde van de author.length
+//   } else {
+//     lastName = author.slice(author.indexOf(" ") + 1, author.lastIndexOf(" ")); // hij gaat het woord tussen de 1e spatie en de laatste spatie weghalen (lastName) / + 1 zorgt er gewoon voor dat de positie van de achternaam op de goeie plek gaat staan nadat de spatie weg is
+//   }
 
-  const capitalizedFirstName =
-    firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
-  const capitalizedLastName =
-    lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
+//   const capitalizedFirstName =
+//     firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
+//   const capitalizedLastName =
+//     lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
 
-  return capitalizedFirstName + " " + capitalizedLastName;
-}
+//   return capitalizedFirstName + " " + capitalizedLastName;
+// }
 
-normalizeAuthorName("  JuliE sussMan (Contributor)");
+// normalizeAuthorName("  JuliE sussMan (Contributor)");
 
 // 16.2
 const newBookTitle = books[1].title.replace("Programs", "Software");
@@ -541,3 +541,26 @@ const logBookTheme = function (title) {
     );
   }
 };
+
+// 16.1 redo
+const normalizeAuthorName = function (author) {
+  author = author.trim();
+  firstName = author.slice(0, author.indexOf(" "));
+
+  // kijk hoeveel spaties er in de text zitten
+  let lastName = "";
+  if (author.indexOf(" ") === author.lastIndexOf(" ")) {
+    lastName = author.slice(author.indexOf(" ") + 1, author.length);
+  } else {
+    lastName = author.slice(author.indexOf(" ") + 1, author.lastIndexOf(" "));
+  }
+
+  // de return
+  const capitalizedFirstName =
+    firstName[0].toUpperCase() + author.slice(1).toLowerCase();
+  const capitalizedLastName =
+    lastName[0].toUpperCase() + author.slice(1).toLowerCase();
+
+  return capitalizedFirstName + " " + capitalizedLastName;
+};
+normalizeAuthorName("  JuliE sussMan (Contributor)");
