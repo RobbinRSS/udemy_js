@@ -564,3 +564,59 @@ const normalizeAuthorName = function (author) {
   return capitalizedFirstName + " " + capitalizedLastName;
 };
 normalizeAuthorName("  JuliE sussMan (Contributor)");
+
+// extra
+const capitalizeNames = function (names) {
+  const name = names.split(" ");
+  const namesUpper = [];
+  for (const n of name) {
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(" "));
+};
+capitalizeNames("robbin schrijver");
+capitalizeNames("lenny van bouwwaarden");
+
+// working with strings part 3
+
+// 17.1
+const logBookCategories = function (str) {
+  const strList = str.split(";");
+
+  for (let string of strList) {
+    console.log(string);
+  }
+};
+
+const bookCategories =
+  "science;computing;computer science;algorithms;business;operating systems;networking;electronics";
+logBookCategories(bookCategories);
+
+// 17.2
+const getKeywordsAsString = function (books) {
+  const keywords = [];
+
+  for (const book of books) {
+    keywords.push(...book.keywords);
+  }
+  const uniqueKeywords = [...new Set(keywords)];
+
+  return uniqueKeywords.push(";");
+};
+getKeywordsAsString(books);
+
+// 17.3
+const logBookChapters = function (chapters) {
+  for (const [chapter, page] of chapters) {
+    console.log(chapter.padEnd(20, "_") + " " + page);
+  }
+};
+
+const bookChapters = [
+  ["The Basics", 14],
+  ["Sorting", 254],
+  ["Searching", 372],
+  ["Graphs", 526],
+  ["Strings", 706],
+];
+logBookChapters(bookChapters);
