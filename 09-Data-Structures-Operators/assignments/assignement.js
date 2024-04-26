@@ -601,7 +601,7 @@ const getKeywordsAsString = function (books) {
   }
   const uniqueKeywords = [...new Set(keywords)];
 
-  return uniqueKeywords.push(";");
+  return uniqueKeywords.join(";");
 };
 getKeywordsAsString(books);
 
