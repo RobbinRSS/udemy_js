@@ -3,8 +3,8 @@
 // Selecting elements
 const player0EL = document.querySelector('.player--0');
 const player1EL = document.querySelector('.player--1');
-const score0El = document.querySelector('#score--0'); // select ID's with querySelector with a #
-const score1El = document.getElementById('score--1'); // only works on ID's, selects a ID in the html
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1');
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
 
