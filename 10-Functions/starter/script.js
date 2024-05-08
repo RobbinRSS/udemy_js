@@ -88,4 +88,21 @@ document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
+// own example
+const substractNumbers = function (n1, n2) {
+  return n1 - n2;
+};
+
+const multiplyNumbers = function (n1, n2) {
+  return n1 * n2;
+};
+
+const calcNumbers = function (n1, n2, fn) {
+  console.log(`Number 1 = ${n1} , number 2 = ${n2}`);
+  console.log(`We are going to ${fn.name} the numbers`);
+  console.log(`The answer is: ${fn(n1, n2)}`);
+};
+
+calcNumbers(12, 2, substractNumbers);
+calcNumbers(12, 2, multiplyNumbers);
 ////////////////////////////////////////////////////////////
