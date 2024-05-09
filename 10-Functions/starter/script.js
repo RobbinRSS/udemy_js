@@ -55,7 +55,6 @@ const newPassport = function (person) {
 newPassport(jonas);
 checkIn(flight, jonas);
 
-*/
 
 //////////  functions accepting callback functions //////////
 
@@ -88,7 +87,7 @@ document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
-// own example
+// my try at higher-order functions
 const substractNumbers = function (n1, n2) {
   return n1 - n2;
 };
@@ -106,3 +105,30 @@ const calcNumbers = function (n1, n2, fn) {
 calcNumbers(12, 2, substractNumbers);
 calcNumbers(12, 2, multiplyNumbers);
 ////////////////////////////////////////////////////////////
+*/
+
+/////////////// functions returning functions ///////////////
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey'); // setup for calling the return function
+greeterHey('Jonas'); // calling the return function
+greeterHey('Steven'); // calling the return function
+
+greet('Hello')('Jonas'); // 2nd () is calling the return function
+
+const greetArrow = greeting => {
+  return name => {
+    // with arrow function only pass in the parameters
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greetArrHey = greetArrow('Yo');
+greetArrHey('Robbin'); // it basically looks like greetArrow('Yo')('Robbin') like the example on the next line
+greetArrow('Hello')('Robbin');
+
+//////////////////////////////////////////////////////////////
