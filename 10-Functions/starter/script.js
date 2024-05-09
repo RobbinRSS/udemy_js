@@ -105,7 +105,6 @@ const calcNumbers = function (n1, n2, fn) {
 calcNumbers(12, 2, substractNumbers);
 calcNumbers(12, 2, multiplyNumbers);
 ////////////////////////////////////////////////////////////
-*/
 
 /////////////// functions returning functions ///////////////
 const greet = function (greeting) {
@@ -120,6 +119,9 @@ greeterHey('Steven'); // calling the return function
 
 greet('Hello')('Jonas'); // 2nd () is calling the return function
 
+// challenge
+
+// my solution ------------------------------------------
 const greetArrow = greeting => {
   return name => {
     // with arrow function only pass in the parameters
@@ -130,5 +132,92 @@ const greetArrow = greeting => {
 const greetArrHey = greetArrow('Yo');
 greetArrHey('Robbin'); // it basically looks like greetArrow('Yo')('Robbin') like the example on the next line
 greetArrow('Hello')('Robbin');
+// ------------------------------------------------------
+
+// jonas solution -----------------------------------------
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('Hi')('Jonas');
+
+// --------------------------------------------------------
 
 //////////////////////////////////////////////////////////////
+*/
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function(){}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+// book(23, 'Sarah Williams'); book is a regular function call that doesnt work with this (the this keyword)
+
+// with call it will call the book function with the (this) keyword set to eurowings
+// call method
+book.call(eurowings, 23, 'Sarah Willaims');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// Apply method
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+
+// own try
+const kiva = {
+  flightName: 'Kiva',
+  number: 'ZL',
+  reservations: [],
+
+  apply: function (flightNm, name) {
+    console.log(
+      `${name} is going on a flight with ${this.flightName} on flight ${flightNm}${this.number}`
+    );
+    this.reservations.push({ flights: `${this.number}${flightNm}`, name });
+  },
+};
+
+kiva.apply(785, 'Robbin Schrijver');
+
+const reservation = kiva.apply;
+
+const kmm = {
+  flightName: 'KMM',
+  number: 'XS',
+  reservations: [],
+};
+
+reservation.call(kmm, 853, 'Robbin Schrijver');
+
+const flightDt = [532, 'Robbin Schrijver'];
+reservation.call(kmm, ...flightDt);
