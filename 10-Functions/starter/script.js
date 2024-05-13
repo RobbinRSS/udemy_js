@@ -140,8 +140,11 @@ greetArr('Hi')('Jonas');
 
 // --------------------------------------------------------
 
-//////////////////////////////////////////////////////////////
 */
+
+//////////////////////////////////////////////////////////////
+
+///////////////// the call and apply methods ////////////////
 
 const lufthansa = {
   airline: 'Lufthansa',
@@ -194,30 +197,81 @@ console.log(swiss);
 book.call(swiss, ...flightData);
 
 // own try
-const kiva = {
-  flightName: 'Kiva',
-  number: 'ZL',
-  reservations: [],
+// const kiva = {
+//   flightName: 'Kiva',
+//   number: 'ZL',
+//   reservations: [],
 
-  apply: function (flightNm, name) {
-    console.log(
-      `${name} is going on a flight with ${this.flightName} on flight ${flightNm}${this.number}`
-    );
-    this.reservations.push({ flights: `${this.number}${flightNm}`, name });
-  },
+//   apply: function (flightNm, name) {
+//     console.log(
+//       `${name} is going on a flight with ${this.flightName} on flight ${flightNm}${this.number}`
+//     );
+//     this.reservations.push({ flights: `${this.number}${flightNm}`, name });
+//   },
+// };
+
+// kiva.apply(785, 'Robbin Schrijver');
+
+// const reservation = kiva.apply;
+
+// const kmm = {
+//   flightName: 'KMM',
+//   number: 'XS',
+//   reservations: [],
+// };
+
+// reservation.call(kmm, 853, 'Robbin Schrijver');
+
+// const flightDt = [532, 'Robbin Schrijver'];
+// reservation.call(kmm, ...flightDt);
+
+//////////////// The bind method (gebruikt dezelfde objecten in de vorige opdracht) //////////////////////
+
+// bind method
+const bookEw = book.bind(eurowings); // makes eurowings the this word // example = instead of this.name(which is lufthansa.name) it makes it eurowings.name
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+bookEw(23, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 23); // 23 causes to already set the parameter to 23 the user only needs to fill in the name
+bookEW23('Jonas Schmedtmann');
+bookEW23('Martha Cooper');
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
 };
 
-kiva.apply(785, 'Robbin Schrijver');
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); // addEventLister is the higher-order function so the this keyword goes to the eventlistener, but we dont want that, we want it to the buyPlane function, so thats why we use bind
 
-const reservation = kiva.apply;
+// partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
 
-const kmm = {
-  flightName: 'KMM',
-  number: 'XS',
-  reservations: [],
+const addVAT = addTax.bind(null, 0.23); // null because there isnt a this keyword so we dont set it
+// addVAT = value => value + value * 0.23
+
+console.log(addVAT(100));
+
+// challenge
+const addTax2 = rate => value => value + value * rate;
+
+const addVAT2 = addTax2(0.23);
+console.log(addVAT2(100));
+addTax2(0.23)(100);
+
+const addTax3 = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
 };
 
-reservation.call(kmm, 853, 'Robbin Schrijver');
-
-const flightDt = [532, 'Robbin Schrijver'];
-reservation.call(kmm, ...flightDt);
+addTax3(0.23)(100);
+const addVAT3 = addTax3(0.23);
+console.log(addVAT3(100));
