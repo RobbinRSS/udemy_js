@@ -140,8 +140,6 @@ greetArr('Hi')('Jonas');
 
 // --------------------------------------------------------
 
-*/
-
 //////////////////////////////////////////////////////////////
 
 ///////////////// the call and apply methods ////////////////
@@ -275,3 +273,44 @@ const addTax3 = function (rate) {
 addTax3(0.23)(100);
 const addVAT3 = addTax3(0.23);
 console.log(addVAT3(100));
+
+*/
+
+////////////////// coding challenge 1 ////////////////////
+const poll = {
+  question: 'What is your favorite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+
+  // This generates [0, 0, 0, 0]
+  answers: new Array(4).fill(0),
+
+  registerNewAnswer() {
+    let promptMessage = `${this.question}\n ${this.options.join(
+      '\n '
+    )}\n (Write option number)`;
+    let promptChoice = +prompt(promptMessage); // + prompt makes the input a number
+
+    if (
+      typeof promptChoice === 'number' &&
+      promptChoice >= 0 &&
+      promptChoice < this.answers.length
+    ) {
+      this.answers[promptChoice]++;
+    }
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are: ${this.answers.join(',')}`);
+    }
+  },
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
