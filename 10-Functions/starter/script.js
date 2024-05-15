@@ -328,4 +328,29 @@ runOnce();
 
 (() => console.log('This will never run again'))();
 
-/////////////////////// closures ////////////////////////////
+///////////////////////// closures //////////////////////////
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking(); // booker gets access from passengerCount, that was previously popped off the call stack = that is called closure / so it looks like const booker = passengerCount = 0
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+// IMPORTANT EXPLENATION: A closure gives a function access to all the variables of it its parent function, even after that parent function has returned. The function keeps a reference to its outer scope, which preserves the scope chain troughout time
+
+// EASIER EXPLENATION = A closure makes sure that a function doesn't loose connection to variables that existed at the functions birth place
+// function -> connection -> parent scope -> variables
+
+// EVEN EASIER EXPLENATION = a closure is like a backpack that a function carries around wherever it goes. this backpack has all the variables that were present in the enviroment where the function was created
+// function -> closure(like a backpack) -> variables(inside the closure (backpack) )
