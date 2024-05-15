@@ -281,14 +281,13 @@ const poll = {
   question: 'What is your favorite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
 
-  // This generates [0, 0, 0, 0]
+  // dit genereert [0, 0, 0, 0]
   answers: new Array(4).fill(0),
 
   registerNewAnswer() {
-    let promptMessage = `${this.question}\n ${this.options.join(
-      '\n '
-    )}\n (Write option number)`;
-    let promptChoice = +prompt(promptMessage); // + prompt makes the input a number
+    let promptChoice = +prompt(
+      `${this.question}\n ${this.options.join('\n')}\n (Write option number)`
+    ); // +prompt maakt de input een number
 
     if (
       typeof promptChoice === 'number' &&
@@ -314,3 +313,19 @@ const poll = {
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+
+////// Immediately invoked function expressions (IIFE) ///////
+const runOnce = function () {
+  console.log('This will never run again');
+};
+runOnce();
+
+(function () {
+  console.log('This will never run again');
+})(); // IIFE function
+
+(() => console.log('This will never run again'))();
+
+/////////////////////// closures ////////////////////////////
