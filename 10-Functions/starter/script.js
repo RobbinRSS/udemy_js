@@ -353,7 +353,6 @@ console.dir(booker);
 // EVEN EASIER EXPLENATION = a closure is like a backpack that a function carries around wherever it goes. this backpack has all the variables that were present in the enviroment where the function was created
 // function -> closure(like a backpack) -> variables(inside the closure (backpack) )
 
-*/
 
 // Example 1
 let f;
@@ -395,3 +394,12 @@ const boardPassengers = function (n, wait) {
 
 // const perGroup = 1000; closure gets priority so this perGroup will not be executed but the closure perGroup inside the function will get executed
 boardPassengers(180, 3);
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+*/
