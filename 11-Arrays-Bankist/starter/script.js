@@ -75,6 +75,8 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+/*
+///////////////// simple arrays methods //////////////////
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // SLICE
@@ -106,3 +108,16 @@ console.log([...arr, ...arr2]);
 
 // JOIN
 console.log(letters.join(' - '));
+*/
+
+//////////////////// The new at Method //////////////////////
+const arr = [23, 11, 64];
+console.log(arr[0]); // 23
+console.log(arr.at(0)); // also 23 but with method
+
+console.log(arr[arr.length - 1]); // 64  // length = 3 - 1 = 2, so location of the array is 2 === 64
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1)); // does the same thing as above
+
+console.log('jonas'.at(0)); // j
+console.log('jonas'.at(-1)); // s
