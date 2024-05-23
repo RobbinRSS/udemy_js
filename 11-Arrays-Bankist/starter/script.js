@@ -35,6 +35,20 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+console.log(account1);
+
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
@@ -192,7 +206,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-*/
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const euroToUsd = 1.1;
@@ -220,3 +234,4 @@ const movementsDescriptions = movements.map((mov, i) => {
   }
 });
 console.log(movementsDescriptions);
+*/
