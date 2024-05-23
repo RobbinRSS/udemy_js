@@ -175,4 +175,21 @@ currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value} ${value}`);
 });
 // sets dont have keys
+
+/////////////////// coding challenge 1 ///////////////////
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = [...dogsJulia];
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  dogs.forEach(function (dog, i) {
+    dog >= 3
+      ? console.log(`Dog number ${i + 1} is an adult and is ${dog} years old`)
+      : console.log(`Dog number ${i + 1} is still a puppy`);
+  });
+};
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 */
