@@ -275,3 +275,24 @@ const max = movements.reduce((acc, mov) => {
   else return mov;
 }, movements[0]);
 console.log(max);
+
+const buyerInfo = [
+  {
+    name: 'Robbin',
+    payment: 100,
+  },
+  {
+    name: 'Lenny',
+    payment: 70,
+  },
+  {
+    name: 'Niels',
+    payment: 45,
+  },
+];
+
+const sortedpaymentInfo = buyerInfo
+  .slice()
+  .sort((a, b) => a.payment - b.payment);
+
+console.log(sortedpaymentInfo);
