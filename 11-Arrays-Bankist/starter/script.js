@@ -127,7 +127,7 @@ createUsernames(accounts);
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -353,7 +353,7 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositsUSD);
-*/
+
 // const calcAverageHumanAge = function (ages) {
 //   const humanAge = ages
 //     .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
@@ -374,3 +374,17 @@ const calcAverageHumanAge = ages =>
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+for (const acc of accounts) {
+  if (acc.owner === 'Jessica Davis') console.log(acc);
+}
