@@ -309,3 +309,5 @@ const calcAverageHumanAge = function (ages) {
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+// Jonas made a new variable for the filter method everything else was pretty much the same
+//////////////////////////////////////////////////////////////
