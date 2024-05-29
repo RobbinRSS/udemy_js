@@ -477,7 +477,7 @@ console.log(account);
 for (const acc of accounts) {
   if (acc.owner === 'Jessica Davis') console.log(acc);
 }
-*/
+
 
 console.log(movements);
 console.log(movements.includes(-130));
@@ -497,3 +497,33 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+*/
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // removes the nested arrays, and turned it into a single array
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat()); // deeply nested arrays wont work with flat()
+console.log(arrDeep.flat(2)); // now it goes to the second level of nesting
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalance);
+
+// flat
+const overalBalance2 = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overalBalance2);
+
+// flatMap
+const overalBalance3 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overalBalance3);
