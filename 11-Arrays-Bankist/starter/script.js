@@ -535,7 +535,7 @@ const overalBalance3 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(overalBalance3);
-*/
+
 
 const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
 console.log(owners.sort()); // sorts it alphabetically, it also mutates the original array
@@ -571,3 +571,33 @@ console.log(movements);
 // });
 movements.sort((a, b) => b - a);
 console.log(movements);
+*/
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// Empty arrays + fill method
+const x = new Array(7);
+console.log(x); // [empty * 7]
+
+x.fill(1); // mutates the array
+x.fill(1, 3, 5); // 1 = value / 2 = start / 3 = ending
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+// array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+
+  console.log(movementsUI.map(el => el.textContent.replace('€', '')));
+});
