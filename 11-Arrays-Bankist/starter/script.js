@@ -571,7 +571,6 @@ console.log(movements);
 // });
 movements.sort((a, b) => b - a);
 console.log(movements);
-*/
 
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
@@ -601,3 +600,67 @@ labelBalance.addEventListener('click', function () {
 
   console.log(movementsUI.map(el => el.textContent.replace('€', '')));
 });
+*/
+
+///////////////// Array methods practice ////////////////////
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(bankDepositSum);
+
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+// console.log(numDeposits1000);
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0); // count++ doesnt work
+
+console.log(numDeposits1000);
+
+let a = 10;
+
+// console.log(++a); // 11
+console.log(a++); // 10 // na de operatie word hij pas aangepast
+console.log(a); // 11
+
+// 3.
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with', 'and'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      exceptions.includes(word)
+        ? word
+        : word.replace(word[0], word[0].toUpperCase())
+    )
+    .join(' ');
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
