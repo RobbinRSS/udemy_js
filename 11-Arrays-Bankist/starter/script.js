@@ -734,5 +734,6 @@ console.log(foodOkay);
 // 8
 const sortedDogs = dogs
   .slice()
-  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+  .sort((a, b) => a.recommendedFood - b.recommendedFood)
+  .flatMap(food => food.recommendedFood);
 console.log(sortedDogs);
