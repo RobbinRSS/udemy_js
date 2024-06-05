@@ -361,7 +361,6 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue'; // every 3rd time
   });
 });
-*/
 
 ////////////////////// numeric seperators ////////////////////
 // 287,460,000,000
@@ -413,3 +412,40 @@ console.log(huge + ' is REALLY big!!!');
 // Divisions
 console.log(10n / 3n); // cl = 3n, because bigInt is an Int
 console.log(10 / 3); // cl = 3.3333333333...
+*/
+
+////////////////////// creating dates ////////////////////////
+
+// Create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Jun 05 2024 13:32:11'));
+console.log(new Date('December 24, 2015'));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+console.log(new Date(2037, 10, 33));
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // 2037 == year
+console.log(future.getMonth()); // 10 == month
+console.log(future.getDate()); // 19 == day of the month
+console.log(future.getDay()); // 4 == day of the week
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString()); // 2037-11-19T14:23:00.000Z
+console.log(future.getTime());
+
+console.log(new Date(2142253380000));
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
