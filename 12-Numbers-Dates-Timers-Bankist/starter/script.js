@@ -379,3 +379,37 @@ console.log(PI);
 
 console.log(Number('230_000')); // NaN
 console.log(parseInt('230_000')); // 230
+
+/////////////////// working with BigInt /////////////////////
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(2342893748237489237489237829749328n); // BigInt number
+console.log(BigInt(234289374));
+
+// operations
+console.log(10000n + 10000n);
+console.log(
+  21238923492879127389718221412937n * 2138192839018390128390180938120n
+);
+
+const huge = 2293081902839013210223n;
+const num = 23;
+
+// console.log(huge * num); // error
+console.log(huge * BigInt(num)); // works
+
+console.log(20n > 15);
+console.log(20n === 20); // false, because === doesnt change the type
+console.log(typeof 20n);
+console.log(20n == '20'); // true
+
+console.log(huge + ' is REALLY big!!!');
+
+// Divisions
+console.log(10n / 3n); // cl = 3n, because bigInt is an Int
+console.log(10 / 3); // cl = 3.3333333333...
