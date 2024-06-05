@@ -253,6 +253,9 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 /*
+
+/////////////// converting and checking numbers //////////////
+
 console.log(23 === 23.0);
 
 // Base 10 - 0 to 9. 1/10 = 0.1. 3/10 = 3.333333...
@@ -289,6 +292,7 @@ console.log(Number.isInteger(23)); // true
 console.log(Number.isInteger(23.0)); // true
 console.log(Number.isInteger(23 / 0)); // false
 
+//////////////////// math and rounding /////////////////////
 
 console.log(Math.sqrt(25)); // wortel van 25 == 5
 console.log(25 ** (1 / 2));
@@ -330,7 +334,8 @@ console.log((2.7).toFixed(0)); // '3' an toFixed always returns a string
 console.log((2.7).toFixed(3)); // 2.700
 console.log((2.345).toFixed(2)); // 2.35
 console.log(+(2.345).toFixed(2)); // 2.35 (and now its a number)
-*/
+
+////////////////// the remainder operator //////////////////
 
 console.log(5 % 2); // 1
 console.log(5 / 2); // 2.5;
@@ -356,3 +361,21 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue'; // every 3rd time
   });
 });
+*/
+
+////////////////////// numeric seperators ////////////////////
+// 287,460,000,000
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 345_99;
+console.log(price);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.14_15;
+console.log(PI);
+
+console.log(Number('230_000')); // NaN
+console.log(parseInt('230_000')); // 230
