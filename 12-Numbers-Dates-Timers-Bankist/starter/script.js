@@ -186,9 +186,35 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // in each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When 0 seconds stop timer, and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // decrease 1 sec
+    time--;
+  };
+
+  let time = 300; // 5 sec
+
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // experimenting API (internationalization api)
 
@@ -211,11 +237,6 @@ let currentAccount;
 //   locale,
 //   options
 // ).format(now);
-
-// FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -257,6 +278,11 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     // Update UI
+
+    // timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -285,6 +311,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -303,6 +333,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -551,6 +585,8 @@ const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
 
 console.log(days1);
 
+///////////////// internationalizing numbers ////////////////
+
 const num = 12938190.23;
 
 const options = {
@@ -570,7 +606,8 @@ console.log(
   'Browser: ',
   new Intl.NumberFormat(navigator.language, options).format(num)
 );
-*/
+
+///////////////// setTimeout and setInterval ////////////////
 
 // setTimeout
 const ingredients = ['olives', 'spinach'];
@@ -599,3 +636,4 @@ if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 //   }).format(now);
 //   console.log(formattedTime);
 // }, 1000);
+*/
