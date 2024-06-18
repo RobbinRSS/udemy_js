@@ -3,6 +3,7 @@
 ///////////////////////////////////////
 // Modal window
 
+/*
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -125,3 +126,39 @@ logo.classList.contains('c');
 
 // dont use this, this will overwrite all the existing classes, and only one class is allowed
 // logo.className = 'jonas'
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.getElementById('section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect(); // getBoundingClientRect() shows where section 1 is located
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect()); //target == function
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset); // what the user sees, the coordinates are from the top of the page, till the location what the user sees
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // }); // smooth scrolling
+
+  // modern way without the weird calculation
+  section1.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
