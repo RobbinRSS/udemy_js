@@ -71,3 +71,57 @@ document
 
     // message.parentElement.removeChild(message) // old way
   });
+
+///////////////// style attributes classes ///////////////////
+
+// styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.height);
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered'); // changing the root
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className); // instead of class do className
+
+logo.alt = 'Beautiful minimalist logo';
+
+// non-standard, thats why it doesnt work
+console.log(logo.designer);
+
+// this works with non-standard attributes
+console.log(logo.getAttribute('designer'));
+
+// giving an attribute to the logo
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.src); // absolute version(entire link)
+console.log(logo.getAttribute('src')); // relative version(the link you see in the css)
+
+const link = document.querySelector('.nav__link--btn');
+
+console.log(link.href); // absolute
+console.log(link.getAttribute('href')); // relative, (as you wrote it in the html)
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+// dont use this, this will overwrite all the existing classes, and only one class is allowed
+// logo.className = 'jonas'
