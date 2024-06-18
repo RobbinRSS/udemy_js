@@ -1,5 +1,40 @@
 'use strict';
 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.getElementById('section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect(); // getBoundingClientRect() shows where section 1 is located
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect()); //target == function
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset); // what the user sees, the coordinates are from the top of the page, till the location what the user sees
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // }); // smooth scrolling
+
+  // modern way without the weird calculation
+  section1.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
+
 ///////////////////////////////////////
 // Modal window
 
@@ -128,37 +163,20 @@ logo.classList.contains('c');
 // logo.className = 'jonas'
 */
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.getElementById('section--1');
+const h1 = document.querySelector('h1');
 
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect(); // getBoundingClientRect() shows where section 1 is located
-  console.log(s1coords);
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading');
+};
 
-  console.log(e.target.getBoundingClientRect()); //target == function
+// addEventListener is most used
+h1.addEventListener(
+  'mouseenter',
+  alertH1 // when you hover over the h1 element you get this message
+);
 
-  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset); // what the user sees, the coordinates are from the top of the page, till the location what the user sees
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Scrolling
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // }); // smooth scrolling
-
-  // modern way without the weird calculation
-  section1.scrollIntoView({
-    behavior: 'smooth',
-  });
-});
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Great! You are reading the heading'); // when you hover over the h1 element you get this message
+// };
