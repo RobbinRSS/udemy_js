@@ -1,8 +1,39 @@
 'use strict';
 
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.btn--close-modal');
+const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.getElementById('section--1');
 
+///////////////////////////////////////
+// Modal window
+
+const openModal = function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+
+//////////////////////////////////////////////////////////
+// Button scrolling
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect(); // getBoundingClientRect() shows where section 1 is located
   console.log(s1coords);
@@ -35,36 +66,37 @@ btnScrollTo.addEventListener('click', function (e) {
   });
 });
 
-///////////////////////////////////////
-// Modal window
+///////////////////////////////////////////////////////////
+// Page navigation
 
-/*
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
-const btnCloseModal = document.querySelector('.btn--close-modal');
-const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
 
-const openModal = function (e) {
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// 1. add event listener to common parent elemetn
+// 2. determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
-};
 
-const closeModal = function () {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
-};
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    e.preventDefault();
 
-btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
-
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
-
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-    closeModal();
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+/*
+
 ////////////////////////////////////////////////////////////
 
 console.log(document.documentElement); // entire html
@@ -179,7 +211,6 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! You are reading the heading'); // when you hover over the h1 element you get this message
 // };
-*/
 
 ///////////////////// event propegation /////////////////////
 
@@ -211,3 +242,4 @@ document.querySelector('.nav').addEventListener(
   }
   // true // capturing event
 );
+*/
