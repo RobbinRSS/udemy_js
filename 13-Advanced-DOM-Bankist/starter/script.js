@@ -143,16 +143,50 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
 // Sticky navigation
-const initialCoords = section1.getBoundingClientRect();
+// const initialCoords = section1.getBoundingClientRect();
 
-console.log(initialCoords);
+// console.log(initialCoords);
 
-window.addEventListener('scroll', function (e) {
-  console.log(window.scrollY);
+// window.addEventListener('scroll', function (e) {
+//   console.log(window.scrollY);
 
-  if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+// const obsCallback = function (entries, observer) {
+//   // entries is an array (thats why forEach is used if there are multiple thresholds)
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// }; // this callback function gets called every time the element (section 1) is not in view
+
+// const obsOptions = {
+//   root: null, // this is the element that is used as a viewport (browser viewport)
+//   threshold: [0, 0.2], // if the element (section 1) is into view the callback function gets called if it gets out of view the callback function gets called again
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1); // looks if it comes into view
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height; //90px
+// console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0, // if header is not into view then stickyNav gets used
+  rootMargin: `-${navHeight}px`, // makes the header part 90px smaller
 });
+headerObserver.observe(header);
 
 /*
 
