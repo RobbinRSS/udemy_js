@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 //constructor function start with capital letters
 // constructor function is a technique to create objects from a function
 const Person = function (firstName, birthYear) {
@@ -71,3 +72,62 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+
+const AddCar = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+const bmw = new AddCar('BMW', 120);
+const mercedes = new AddCar('mercedes', 95);
+
+AddCar.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+AddCar.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+bmw.accelerate();
+bmw.accelerate();
+mercedes.brake();
+mercedes.brake();
+*/
+
+// class expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Methods will be added to .prototype property
+  calcAge() {
+    console.log(2037 - this.birthYear); // prototypal inheritance so its allowed
+  }
+
+  greet() {
+    console.log(`Hey ${this.firstName}`);
+  }
+}
+
+const jessica = new PersonCl('Jessica', 1996);
+console.log(jessica);
+jessica.calcAge();
+
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// PersonCl.prototype.greet = function () {
+//   console.log(`Hey ${this.firstName}`);
+// };
+jessica.greet();
+
+// 1. classes are NOT hoisted (meaning: you have to declare the function, because every code above it wouldnt work with it)
+// 2. Classes are first-class citizens (meaning: pass them into functions and also return them from functions)
+// 3. Classes are executed in strict mode
