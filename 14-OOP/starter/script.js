@@ -248,7 +248,7 @@ ford.accelerate();
 ford.brake();
 ford.speedUS = 50;
 console.log(ford);
-*/
+
 
 //// inheritance Between 'Classes': constructor functions ////
 
@@ -329,3 +329,71 @@ tesla.chargeBattery(90);
 console.log(tesla);
 tesla.brake();
 tesla.accelerate();
+
+*/
+
+//// inheritance between classes: ES6 classes ////
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // all instances have access to them
+  // Methods will be added to .prototype property
+  calcAge() {
+    console.log(2037 - this.birthYear); // prototypal inheritance so its allowed
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  // set a property that already exists
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // static === only personCl has access to this
+  static hey() {
+    console.log('Hey there');
+  }
+}
+
+// link the prototypes from PersonCl to Student
+class Student extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    //   // super is a built in functions, points to PersonCl, so we dont have to do PersonCl.call()
+    //   // always needs to happen first
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as a student i feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+
+const martha = new Student('Martha Jones', 2012, 'Computer science'); // with the extend and if we dont need new properties, then you dont have to use the constructor
+martha.introduce();
+martha.calcAge();
