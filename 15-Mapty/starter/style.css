@@ -85,9 +85,10 @@ a:visited {
 }
 
 .workout__title {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 600;
   grid-column: 1 / -1;
+  margin: 0;
 }
 
 .workout__details {
@@ -217,4 +218,31 @@ a:visited {
 }
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
+}
+
+.btn__form {
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  width: 70px;
+  margin: 0;
+}
+
+.workout__delete-btn {
+  background-color: #ff4d4d; /* Red color for delete */
+}
+
+.workout__delete-btn:hover {
+  background-color: #ff1a1a; /* Darker shade on hover */
+}
+
+.workout__edit-btn {
+  background-color: rgb(133, 216, 8);
+}
+
+.workout__edit-btn:hover {
+  background-color: rgb(101, 163, 7);
 }

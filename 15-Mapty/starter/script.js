@@ -79,10 +79,18 @@ class App {
   #mapEvent;
   #workouts = [];
   constructor() {
+    // Get users position
     this._getposition();
+
+    // get data from local storage
+    this._getLocalStorage();
+
+    // attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this)); // without bind the this keyword was pointing to form
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    containerWorkouts.addEventListener('click', this._deleteForm.bind(this));
+    containerWorkouts.addEventListener('click', this._editForm.bind(this));
   }
 
   _getposition() {
@@ -105,9 +113,9 @@ class App {
     const coords = [latitude, longitude];
 
     // leaflet library for map
-    console.log(this);
+    // console.log(this);
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
-    console.log(this.#map);
+    // console.log(this.#map);
 
     L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
@@ -116,6 +124,10 @@ class App {
 
     // handling clicks on map
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   // map event is when something happens on the map like a click
@@ -193,7 +205,6 @@ class App {
     }
     // add new object to workout array
     this.#workouts.push(workout);
-    console.log(workout);
 
     // render workout on map as marker
     this._renderWorkoutMarker(workout);
@@ -203,6 +214,9 @@ class App {
 
     // clear input fields
     this._hideForm();
+
+    // Set local storage to all workouts
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -226,6 +240,8 @@ class App {
   _renderWorkout(workout) {
     let html = `
         <li class="workout workout--${workout.type}" data-id="${workout.id}">
+        <button class="workout__delete-btn btn__form">${'🗑️'}</button>
+        <button class="workout__edit-btn btn__form">${'🖋️'}</button>
           <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__details">
             <span class="workout__icon">${
@@ -273,6 +289,73 @@ class App {
 
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
+    // console.log(workoutEl);S
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+
+    // console.log(workout);
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: { duration: 1 },
+    });
+
+    //using the public interface
+    // workout.click();
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts)); // key(workouts), value(JSON), makes an object a string
+  }
+  //////// problem with stringify and localStorage is that it removes the prototype (chain) from the object that we created////
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workouts')); // parse is the opposite of stringify
+    // console.log(data);
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(work => {
+      this._renderWorkout(work);
+    });
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
+  }
+
+  _deleteForm(e) {
+    const deleteBtn = e.target.closest('.workout__delete-btn');
+    console.log(deleteBtn);
+
+    if (!deleteBtn) return;
+
+    const workoutEl = deleteBtn.closest('.workout');
+    console.log(workoutEl);
+
+    if (!workoutEl) return;
+
+    this.#workouts = this.#workouts.filter(
+      work => work.id !== workoutEl.dataset.id
+    );
+    workoutEl.remove();
+
+    this._setLocalStorage();
+  }
+
+  _editForm(e) {
+    const editBtn = e.target.closest('.workout__edit-btn');
+    console.log(editBtn);
+
+    if (!editBtn) return;
+
+    const workoutEl = editBtn.closest('.workout');
     console.log(workoutEl);
 
     if (!workoutEl) return;
@@ -281,15 +364,9 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
 
-    console.log(workout);
-
-    this.#map.setView(workout.coords, this.#mapZoomLevel, {
-      animate: true,
-      pan: { duration: 1 },
-    });
-
-    //using the public interface
-    workout.click();
+    inputType.value = workout.type;
+    inputDistance.value = workout.distance;
+    inputDuration.value = workout.duration;
   }
 }
 
