@@ -78,6 +78,7 @@ class App {
   #mapZoomLevel = 13;
   #mapEvent;
   #workouts = [];
+  #editWorkout;
   constructor() {
     // Get users position
     this._getposition();
@@ -364,9 +365,20 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
 
+    console.log(workout);
+
+    this.#editWorkout = workout;
+
     inputType.value = workout.type;
     inputDistance.value = workout.distance;
     inputDuration.value = workout.duration;
+
+    form.classList.remove('hidden');
+
+    // Remove old workout from #workouts and replace it with the new one
+    if ((workout.type = 'running'))
+      inputElevation.value = workout.elevationGain;
+    if ((workout.type = 'cycling')) inputCadence.value = workout.cadence;
   }
 }
 
