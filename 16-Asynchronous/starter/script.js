@@ -29,6 +29,7 @@ const renderCountry = function (data, className = '') {
   countriesContainer.style.opacity = 1;
 };
 
+/*
 const getCountryAndNeighbour = function (country) {
   // AJAX call 1
   const request = new XMLHttpRequest();
@@ -64,4 +65,38 @@ const getCountryAndNeighbour = function (country) {
     });
   });
 };
-getCountryAndNeighbour('netherlands');
+getCountryAndNeighbour('Netherlands');
+*/
+
+// promise is a container for a future value
+// example
+// (1) lottery ticket. promise that i will receive money if i guess the correct outcome
+// (2) i buy a lottery ticket (promise) right now
+// (3) lottery draw happens asynchronously
+// (4) if correct outcome, I receive money, because it was promised
+
+///////////////////////// consuming promises ////////////////////////
+
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json(); // json() returns a promise, and is asycnhronous, and since its a promise we can use the then method on that
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     });
+// };
+
+// the function above is the more worked out function
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => {
+      return response.json(); // json() returns a promise, and is asycnhronous, and since its a promise we can use the then method on that
+    })
+    .then(data => {
+      renderCountry(data[0]);
+    });
+};
+getCountryData('portugal');
