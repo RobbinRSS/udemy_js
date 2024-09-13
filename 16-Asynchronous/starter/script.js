@@ -91,12 +91,19 @@ getCountryAndNeighbour('Netherlands');
 
 // the function above is the more worked out function
 const getCountryData = function (country) {
+  // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => {
-      return response.json(); // json() returns a promise, and is asycnhronous, and since its a promise we can use the then method on that
-    })
+    .then(response => response.json())
     .then(data => {
       renderCountry(data[0]);
-    });
+      const neighbour = data[0].borders[0];
+
+      if (!neighbour) return;
+
+      // Country 2
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data[0], 'neighbour'));
 };
-getCountryData('portugal');
+getCountryData('netherlands');
