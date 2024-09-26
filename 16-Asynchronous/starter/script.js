@@ -26,7 +26,12 @@ const renderCountry = function (data, className = '') {
     </article>
 `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
+};
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
 };
 
 /*
@@ -104,6 +109,18 @@ const getCountryData = function (country) {
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data[0], 'neighbour'));
-};
-getCountryData('netherlands');
+    .then(data => renderCountry(data[0], 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 🧨🧨🧨`);
+      renderError(`Something went wrong: ${err.message}🧨🧨🧨`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+}; // then == only when promise is fulfilled, catch == only when promised is rejected (err parameter is also a real javascript function, thats why i can call message on it), finally == happens always no matter rejected or fulfilled
+
+btn.addEventListener('click', function () {
+  getCountryData('netherlands');
+});
+
+getCountryData('dadwdasdafdwa');
